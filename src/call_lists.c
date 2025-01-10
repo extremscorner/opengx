@@ -521,7 +521,7 @@ static void queue_draw_geometry(struct DrawGeometry *dg,
     GX_End();
 
     u32 size = GX_EndDispList();
-    fprintf(stderr, "Created draw list %u\n", size);
+    debug(OGX_LOG_CALL_LISTS, "Created draw list %u\n", size);
     /* Free any excess memory */
     void *new_ptr = realloc(dg->gxlist, size);
     assert(new_ptr == dg->gxlist);

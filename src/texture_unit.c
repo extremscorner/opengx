@@ -451,7 +451,7 @@ static void setup_texture_stage_matrix(const OgxTextureUnit *tu,
 void _ogx_setup_texture_stages(u8 raster_reg_index, u8 channel)
 {
     u8 raster_rgb, raster_alpha;
-    if (channel != GX_COLORNULL) {
+    if (channel != GX_COLOR_NULL) {
         raster_rgb = GX_CC_RASC;
         raster_alpha = GX_CA_RASA;
     } else {

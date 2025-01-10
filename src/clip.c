@@ -81,7 +81,7 @@ static bool setup_tev(u8 tex_map, int plane_index0, int plane_index1)
     /* Set a logical operation: output = d + ((a OP b) ? c:0) */
     GX_SetTevAlphaIn(stage, GX_CA_TEXA, GX_CA_ZERO, GX_CA_APREV, GX_CA_ZERO);
     GX_SetTevAlphaOp(stage, GX_TEV_COMP_A8_GT, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
-    GX_SetTevOrder(stage, tex_coord, tex_map, GX_COLORNULL);
+    GX_SetTevOrder(stage, tex_coord, tex_map, GX_COLOR_NULL);
 
     /* Setup a texture coordinate transformation that applies the vertex
      * coordinates to the clip plane equation, therefore resulting in a texture
