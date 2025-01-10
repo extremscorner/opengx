@@ -85,7 +85,7 @@ const GLubyte *glGetString(GLenum name)
     case GL_VENDOR:
         return "opengx";
     case GL_RENDERER:
-        return "libogc";
+        return "libogc2";
     case GL_VERSION:
         return ogx_get_proc_address("glUseProgram") ? "3.3" : "1.5";
     case GL_EXTENSIONS:

@@ -1463,7 +1463,7 @@ void glClear(GLbitfield mask)
     } else {
         GX_SetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
         GX_SetNumTexGens(0);
-        GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORDNULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+        GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
     }
 
     if (mask & GL_COLOR_BUFFER_BIT)
@@ -2433,7 +2433,7 @@ bool _ogx_setup_render_stages()
         GX_SetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
         GX_SetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
         // Select COLOR0A0 for the rasterizer, disable all textures
-        GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORDNULL, GX_TEXMAP_DISABLE, GX_COLOR0A0);
+        GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_DISABLE, GX_COLOR0A0);
 
         // STAGE 1: diffuse*vert_color + cprev -> cprev
         // In data: d: Raster Color a: CPREV
@@ -2443,11 +2443,11 @@ bool _ogx_setup_render_stages()
         GX_SetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, raster_output);
         GX_SetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, raster_output);
         // Select COLOR1A1 for the rasterizer, disable all textures
-        GX_SetTevOrder(GX_TEVSTAGE1, GX_TEXCOORDNULL, GX_TEXMAP_DISABLE, GX_COLOR1A1);
+        GX_SetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD_NULL, GX_TEXMAP_DISABLE, GX_COLOR1A1);
 
         if (glparamstate.texture_enabled) {
             // Do not select any raster color channel
-            _ogx_setup_texture_stages(raster_reg_index, GX_COLORNULL);
+            _ogx_setup_texture_stages(raster_reg_index, GX_COLOR_NULL);
         }
     } else {
         // Unlit scene
@@ -2483,7 +2483,7 @@ bool _ogx_setup_render_stages()
             GX_SetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
             GX_SetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
             // Select COLOR0A0 for the rasterizer, Texture 0 for texture rasterizer and TEXCOORD0 slot for tex coordinates
-            GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORDNULL, GX_TEXMAP_DISABLE, GX_COLOR0A0);
+            GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_DISABLE, GX_COLOR0A0);
         }
     }
 

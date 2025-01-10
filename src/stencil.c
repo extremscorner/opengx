@@ -347,7 +347,7 @@ static bool setup_tev_full(bool invert_logic)
         GX_SetTevAlphaIn(stage, ref_value, GX_CA_TEXA, GX_CA_APREV, GX_CA_ZERO);
     }
     GX_SetTevAlphaOp(stage, logical_op, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
-    GX_SetTevOrder(stage, tex_coord, tex_map, GX_COLORNULL);
+    GX_SetTevOrder(stage, tex_coord, tex_map, GX_COLOR_NULL);
 
     update_stencil_texture();
 
@@ -453,7 +453,7 @@ static bool draw_op(uint16_t op,
     u8 stage = GX_TEVSTAGE0 + ogx_gpu_resources->tevstage_first++;
     u8 tevreg_index = ogx_gpu_resources->tevreg_first++;
     GX_SetTevColor(GX_TEVREG0 + tevreg_index, drawColor);
-    GX_SetTevOrder(stage, GX_TEXCOORDNULL, GX_TEXMAP_DISABLE, GX_COLOR0A0);
+    GX_SetTevOrder(stage, GX_TEXCOORD_NULL, GX_TEXMAP_DISABLE, GX_COLOR0A0);
     /* Pass the constant color */
     GX_SetTevColorIn(stage, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO,
                      GX_CC_C0 + tevreg_index * 2);

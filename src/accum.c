@@ -63,7 +63,7 @@ static void draw_screen(GXTexObj *texture, float value)
         GX_SetNumTexGens(1);
         GX_LoadTexObj(texture, GX_TEXMAP0);
     } else {
-        GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORDNULL,
+        GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL,
                        GX_TEXMAP_NULL, GX_COLOR0A0);
         GX_SetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
         GX_SetNumTexGens(0);
