@@ -81,7 +81,7 @@ void _ogx_texture_gen_sw_sphere_map(int index, Tex2f out)
     guVecMultiply(glparamstate.modelview_matrix, &pos, &pos);
     /* For the normal, only use the scale + rotation part of the matrix */
     guVecMultiplySR(glparamstate.modelview_matrix, &normal, &normal);
-    guVecNormalize(&pos);
+    guVecNormalize(&pos, &pos);
 
     /* The pos vector now can be used to represent the vector from the eye
      * to the vertex. Reflect it across the normal to find the reflection

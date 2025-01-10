@@ -144,12 +144,11 @@ static void texture_get_info(const GXTexObj *obj, TextureInfo *info)
         info->texels = MEM_PHYSICAL_TO_K0(info->texels);
     }
 
-    float minlevel, maxlevel;
-    GX_GetTexObjLOD(obj, &minlevel, &maxlevel);
-    info->minlevel = minlevel;
-    info->maxlevel = maxlevel;
+    info->minlevel = GX_GetTexObjMinLOD(obj);
+    info->maxlevel = GX_GetTexObjMaxLOD(obj);
     info->ud.ptr = GX_GetTexObjUserData(obj);
-    GX_GetTexObjFilterMode(obj, &info->min_filter, &info->mag_filter);
+    info->min_filter = GX_GetTexObjMinFilt(obj);
+    info->mag_filter = GX_GetTexObjMagFilt(obj);
 
     /* Check if we wanted an alpha channel instead */
     if (info->format == GX_TF_I8 && info->ud.d.is_alpha)
@@ -182,7 +181,7 @@ void glTexParameteri(GLenum target, GLenum pname, GLint param)
         GX_InitTexObjWrapMode(&currtex->texobj, wraps, wrapt);
         break;
     case GL_TEXTURE_MAG_FILTER:
-        GX_GetTexObjFilterMode(&currtex->texobj, &min_filter, &mag_filter);
+        min_filter = GX_GetTexObjMinFilt(&currtex->texobj);
         /* Only GX_NEAR and GX_LINEAR are supported for magnification */
         mag_filter = (param == GL_NEAREST ||
                       param == GL_NEAREST_MIPMAP_NEAREST ||
@@ -190,10 +189,9 @@ void glTexParameteri(GLenum target, GLenum pname, GLint param)
         GX_InitTexObjFilterMode(&currtex->texobj, min_filter, mag_filter);
         break;
     case GL_TEXTURE_MIN_FILTER:
-        GX_GetTexObjFilterMode(&currtex->texobj, &min_filter, &mag_filter);
+        mag_filter = GX_GetTexObjMagFilt(&currtex->texobj);
         min_filter = gl_filter_to_gx(param);
         GX_InitTexObjFilterMode(&currtex->texobj, min_filter, mag_filter);
-        GX_GetTexObjFilterMode(&currtex->texobj, &min_filter, &mag_filter);
         break;
     };
 }

@@ -53,7 +53,7 @@ const GLubyte *glGetString(GLenum name)
     case GL_VENDOR:
         return "opengx";
     case GL_RENDERER:
-        return "libogc";
+        return "libogc2";
     case GL_VERSION:
         return "1.1";
     case GL_EXTENSIONS:
