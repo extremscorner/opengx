@@ -43,6 +43,7 @@ extern "C" {
 void *_ogx_vbo_get_data(VboType vbo, const void *offset);
 /* Mark the given VBO as in use by the GPU */
 void _ogx_vbo_set_in_use(VboType vbo);
+void _ogx_vbo_reset_used_tokens(void);
 void _ogx_vbo_clear_unbound_buffers(void);
 
 #ifdef __cplusplus

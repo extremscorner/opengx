@@ -328,6 +328,15 @@ void _ogx_vbo_set_in_use(VboType vbo)
     s_buffers[index]->last_sync_token_sent = send_draw_sync_token();
 }
 
+void _ogx_vbo_reset_used_tokens()
+{
+    for (int i = 0; i < MAX_VBOS; i++) {
+        if (VBO_IS_USED(i)) {
+            s_buffers[i]->last_sync_token_sent = 0;
+        }
+    }
+}
+
 void _ogx_vbo_clear_unbound_buffers()
 {
     check_releasable_unbound_buffers(true);
