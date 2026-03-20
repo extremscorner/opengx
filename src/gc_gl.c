@@ -237,6 +237,7 @@ int ogx_prepare_swap_buffers()
     if (glparamstate.render_mode != GL_RENDER) return -1;
     _ogx_draw_sync_token = 0;
     GX_SetDrawSync(0);
+    _ogx_vbo_reset_used_tokens();
     _ogx_vbo_clear_unbound_buffers();
     return 0;
 }
